@@ -5,7 +5,7 @@ public class CustomerAuth {
 	public String password;
 	
 	public CustomerAuth() {
-		this.username = "t";
+		this.username = "theodore";
 		this.password = "123";
 	}
 	
