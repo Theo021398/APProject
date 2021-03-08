@@ -1,20 +1,20 @@
 
-public class CustomerAuth {
+public class UserCredentials {
 
 	public String username;
 	public String password;
 	
-	public CustomerAuth() {
+	public UserCredentials() {
 		this.username = "theodore";
 		this.password = "Client20";
 	}
 	
-	public CustomerAuth(String username, String password) {
+	public UserCredentials(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 	
-	public CustomerAuth(CustomerAuth UserAuthen) {
+	public UserCredentials(UserCredentials UserAuthen) {
 		this.password = UserAuthen.password;
 		this.password = UserAuthen.username;
 	}
@@ -37,7 +37,7 @@ public class CustomerAuth {
 
 	@Override
 	public String toString() {
-		return "Employee credentials: Username=" + username + ", Password=" + password + "]";
+		return "User Credentials : Username=" + username + ", Password=" + password + "]";
 	}
 	
 	

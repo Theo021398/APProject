@@ -1,6 +1,9 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class UserAuthentication {
 	
@@ -14,7 +17,7 @@ public class UserAuthentication {
 	private static void MainMenu() throws IOException {
 		
 		Scanner choice = new Scanner(System.in);
-	 	CustomerAuth Employee = new CustomerAuth(); 
+		UserCredentials USER = new UserCredentials(); 
 	 	
 	 	System.out.println("\t\t Welcome to Micro-Star CableVision.\n");
 	 	System.out.println("Please Specify whether you are a:");
@@ -31,7 +34,7 @@ public class UserAuthentication {
 		try {
 			if (ans == 1) {
 				try {
-					CustomerMenu();
+					CustomerMenu(USER);
 				} catch (IOException e) {
 					System.out.println("\nError in accepting choice.");
 				}
@@ -47,45 +50,50 @@ public class UserAuthentication {
 		
 	}
 	 
-	public static void CustomerMenu() throws IOException {
-		  
-		  CustomerAuth customer = new CustomerAuth();
-		    char ans;
-		    
+	public static void CustomerMenu(UserCredentials credential) throws IOException {
+
 		    while(true) {
 		    		
-			    
-		    		
-			        if(CustomerInput().equals(customer.username) && CustomerInput().equals(customer.password))
+			        if(CustomerInput().equals(credential.username) && CustomerInput().equals(credential.password))
 			        {
 			            System.out.println("Authentication Successful");
+			            
+			        
 			        }
 			        else
 			        {
 			        	
-			            System.out.println("\t\tWrong Password or Username. \n\tWould you like to go again [Y/N].");
-			            
-			            ans = ' ';
-						while(ans == 'y' && ans == 'Y') {
-							CustomerMenu();
-							}
-						System.out.println(" ");
-						if(ans == 'n' || ans == 'N') {
-							MainMenu();
-							//break;
-						}	
+			        	try {
+			        		
+			        		Scanner choice = new Scanner(System.in);
+			        		String ans;
+			        		System.out.println("\n\n\n\t\tWrong Password or Username. \n\tWould you like to go again [Y/N].");
+				            
+				            ans = choice.nextLine();
+				            
+							if(ans.equals('y') || ans.equals('Y')) {
+								UserCredentials c = new UserCredentials();
+								CustomerMenu(c);
+								//System.in('cls');
+								}
+							System.out.println(" ");
+							if(ans.equals('n')|| ans.equals('N')) {
+								MainMenu();
+								//break;
+							}	
+			        	}catch (InputMismatchException e) {
+			        		System.out.println("Wrong input, go again!");
+			        	}
+			        	
 					}
 		    }
+	}
 		    
 
-
-	}//end of Customer Menu 
-	private static Object CustomerInput(String u, String p) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private static String CustomerInput() {
+		//change array size soon
+		List<UserCredentials> List = new ArrayList<UserCredentials>(20);
+		
 		System.out.println("\t Micro-Star CableVision thank you so much for your continued serivces.\n ");
 	    System.out.println("As our valued customer please specify how we can serve you best.");
 	    String UName, Pass;
@@ -108,6 +116,7 @@ public class UserAuthentication {
 			
 			
 	}//end of Technician menus
+	
 }
 
 
